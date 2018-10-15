@@ -1,6 +1,21 @@
 {
   "pokemon": [
     {
+      "id":1,
+      "name": "bulbasaur",
+      "stats": [
+        {
+          "value":35,
+          "name":"hp"
+        }
+      ],
+      "sprites": {
+        "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+        "back":
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png"
+      }
+    },
+    {
       "height": 10,
       "weight": 130,
       "id": 2,
