@@ -14,6 +14,14 @@ class PokemonPage extends React.Component {
     }
   }
 
+  addPokemon = (pokemon) => {
+    let newPokemons = this.state.pokemons.slice()
+    newPokemons.push(pokemon)
+    this.setState({
+      pokemons: newPokemons
+    })
+  }
+
   componentDidMount() {
     fetch("http://localhost:3000/pokemon").then(res=>res.json())
     .then((pokemons) => {
@@ -40,9 +48,9 @@ class PokemonPage extends React.Component {
 
   }
 
-  handleSeachClick = () => {
-    console.log("hello")
-  }
+  // handleSeachClick = () => {
+  //   console.log("hello")
+  // }
 
 
   render() {
@@ -54,7 +62,7 @@ class PokemonPage extends React.Component {
         <br />
         <PokemonCollection pokemons={this.state.pokemonSearchTerm === "" ? this.state.pokemons : this.state.results}/>
         <br />
-        <PokemonForm />
+        <PokemonForm addPokemon={this.addPokemon}/>
       </div>
     )
   }
