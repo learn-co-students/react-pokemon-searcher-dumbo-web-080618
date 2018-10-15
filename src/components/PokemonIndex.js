@@ -5,6 +5,40 @@ import { Search } from 'semantic-ui-react'
 import _ from 'lodash'
 
 class PokemonPage extends React.Component {
+  state ={
+    pokemon:[]
+  }
+  componentDidMount() {
+    this.handleFetch()
+  }
+
+  handleFetch = () => {
+    fetch("http://localhost:3000/pokemon")
+    .then(response=> response.json())
+    .then(data => this.setState({pokemon:data}))
+  }
+
+  handleSubmit = (arg) => {
+    fetch("http://localhost:3000/pokemon",{
+      method: "POST",
+      headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify({name:arg.name,
+          stats:[{
+            "value": arg.hp,
+            "name": "hp"
+          }
+          ],
+          sprites:{
+            "frontUrl":arg.frontUrl,
+            "backUrl":arg.backUrl
+          }
+        })
+    })
+    this.handleFetch()
+  }
+
   render() {
     return (
       <div>
@@ -12,9 +46,9 @@ class PokemonPage extends React.Component {
         <br />
         <Search onSearchChange={_.debounce(() => console.log('🤔'), 500)} showNoResults={false} />
         <br />
-        <PokemonCollection />
+        <PokemonCollection pokeInfo={this.state.pokemon}/>
         <br />
-        <PokemonForm />
+        <PokemonForm handleSubmit={this.handleSubmit} />
       </div>
     )
   }
