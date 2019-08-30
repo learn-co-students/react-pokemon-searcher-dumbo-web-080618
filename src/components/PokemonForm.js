@@ -23,7 +23,7 @@ class PokemonForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.handleSubmit(this.state)
+    this.props.sendToParent(this.state)
   }
 
   render() {
