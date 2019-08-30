@@ -18,7 +18,7 @@ class PokemonPage extends React.Component {
     .then(data => this.setState({pokemon:data}))
   }
 
-  handleSubmit = (arg) => {
+  sendToParent = (arg) => {
     fetch("http://localhost:3000/pokemon",{
       method: "POST",
       headers: {
@@ -48,7 +48,7 @@ class PokemonPage extends React.Component {
         <br />
         <PokemonCollection pokeInfo={this.state.pokemon}/>
         <br />
-        <PokemonForm handleSubmit={this.handleSubmit} />
+        <PokemonForm sendToParent={this.sendToParent} />
       </div>
     )
   }
